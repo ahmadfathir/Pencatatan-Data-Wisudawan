@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Tambah Data — Anantakupa Studio{% endblock %}
+
+{% block content %}
+
+<div class="form-layout anim-up">
+    <div class="form-sidebar">
+        <div class="form-sidebar-inner">
+            <div class="sidebar-icon">&#9998;</div>
+            <h2 class="sidebar-title">Form Pendaftaran<br><em>Wisudawan</em></h2>
+            <p class="sidebar-desc">Lengkapi seluruh data pelanggan untuk keperluan pasfoto wisuda.</p>
+            <div class="sidebar-steps">
+                <div class="step active"><span>1</span> Data Akademik</div>
+                <div class="step active"><span>2</span> Kontak</div>
+                <div class="step active"><span>3</span> Catatan</div>
+            </div>
+            <a href="{{ url_for('index') }}" class="sidebar-back">&larr; Kembali ke Daftar</a>
+        </div>
+    </div>
+
+    <div class="form-main">
+        <form method="POST" class="data-form">
+
+            <div class="form-section">
+                <div class="form-section-label">Data Akademik</div>
+                <div class="form-row-grid">
+                    <div class="form-group">
+                        <label class="field-label" for="nama_lengkap">Nama Lengkap</label>
+                        <input type="text" id="nama_lengkap" name="nama_lengkap" class="field-input" placeholder="Nama sesuai ijazah" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="field-label" for="nim">NIM</label>
+                        <input type="text" id="nim" name="nim" class="field-input" placeholder="Nomor Induk Mahasiswa" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="field-label" for="fakultas">Fakultas</label>
+                        <input type="text" id="fakultas" name="fakultas" class="field-input" placeholder="Contoh: Teknik" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="field-label" for="program_studi">Program Studi</label>
+                        <input type="text" id="program_studi" name="program_studi" class="field-input" placeholder="Contoh: Informatika" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <div class="form-section">
+                <div class="form-section-label">Informasi Kontak</div>
+                <div class="form-row-grid">
+                    <div class="form-group">
+                        <label class="field-label" for="nomor_hp">Nomor HP / WhatsApp</label>
+                        <input type="text" id="nomor_hp" name="nomor_hp" class="field-input" placeholder="08xxxxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="field-label" for="email">Email <span class="optional">(opsional)</span></label>
+                        <input type="email" id="email" name="email" class="field-input" placeholder="nama@email.com">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <div class="form-section">
+                <div class="form-section-label">Catatan Tambahan</div>
+                <div class="form-group">
+                    <label class="field-label" for="catatan">Catatan <span class="optional">(opsional)</span></label>
+                    <textarea id="catatan" name="catatan" rows="4" class="field-input field-textarea" placeholder="Permintaan khusus, keterangan tambahan, dsb."></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary-new btn-submit">
+                    &#10003; Simpan Data
+                </button>
+                <a href="{{ url_for('index') }}" class="btn-ghost-new">Batal</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

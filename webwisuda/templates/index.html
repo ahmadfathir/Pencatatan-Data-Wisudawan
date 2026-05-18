@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}Daftar Wisudawan — Anantakupa Studio{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-grid anim-up">
+    <!-- Stat card -->
+    <div class="stat-panel">
+        <div class="stat-badge">Total Pendaftar</div>
+        <div class="stat-num">{{ data|length }}</div>
+        <div class="stat-unit">wisudawan terdaftar</div>
+    </div>
+
+    <!-- Action card -->
+    <div class="action-panel">
+        <div class="action-heading">Kelola Data</div>
+        <div class="action-btns">
+            <a href="{{ url_for('tambah') }}" class="btn-primary-new">
+                <span class="btn-icon">+</span> Tambah Data
+            </a>
+            <a href="{{ url_for('export_csv') }}" class="btn-ghost-new">
+                <span class="btn-icon">&#8659;</span> Export Excel
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="table-panel anim-up">
+    {% if data %}
+    <div class="table-head-row">
+        <h2 class="table-title">Daftar Pendaftar</h2>
+        <span class="table-count">{{ data|length }} entri</span>
+    </div>
+    <div class="table-wrap">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th class="col-id">#</th>
+                    <th>Tanggal Daftar</th>
+                    <th>Nama Lengkap</th>
+                    <th>NIM</th>
+                    <th>Program Studi</th>
+                    <th>Nomor HP</th>
+                    <th class="col-action">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr class="data-row">
+                    <td><span class="id-badge">{{ row.id }}</span></td>
+                    <td class="date-cell">{{ row.tanggal_daftar }}</td>
+                    <td class="name-cell">{{ row.nama_lengkap }}</td>
+                    <td class="nim-cell">{{ row.nim }}</td>
+                    <td class="prodi-cell">{{ row.program_studi }}</td>
+                    <td class="hp-cell">{{ row.nomor_hp }}</td>
+                    <td>
+                        <a href="{{ url_for('hapus', id=row.id) }}"
+                           class="btn-delete"
+                           onclick="return confirm('Hapus data {{ row.nama_lengkap }}?')">
+                            Hapus
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <div class="empty-icon">&#9998;</div>
+        <h3 class="empty-title">Belum Ada Data</h3>
+        <p class="empty-sub">Mulai tambahkan pendaftar wisudawan pertama Anda.</p>
+        <a href="{{ url_for('tambah') }}" class="btn-primary-new">+ Tambah Data Pertama</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
